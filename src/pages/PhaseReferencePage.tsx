@@ -67,7 +67,7 @@ export default function PhaseReferencePage() {
           <Badge className={`text-xs ${col.badge}`}>Workflow Reference</Badge>
         </div>
         <p className="text-sm text-muted-foreground">
-          Tài liệu tham khảo workflow — để làm việc với dự án cụ thể, hãy chọn dự án từ danh sách.
+          Tài liệu tham khảo workflow - để làm việc với dự án cụ thể, hãy chọn dự án từ danh sách.
         </p>
       </div>
 

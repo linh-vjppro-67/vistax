@@ -567,3 +567,158 @@ export function getDocsByPhase(projectId: string, phase: Phase): Document[] {
 export function getDocsByCategory(projectId: string, phase: Phase, category: string): Document[] {
   return MOCK_DOCUMENTS.filter(d => d.projectId === projectId && d.phase === phase && d.category === category);
 }
+
+// ─── Case Study & Referral ────────────────────────────────────────────────────
+
+export type CaseStudyStatus = 'Draft' | 'Published' | 'Archived';
+export type ReferralStatus = 'Pending' | 'In Progress' | 'Converted' | 'Lost';
+
+export interface CaseStudy {
+  id: string;
+  projectId: string;
+  projectName: string;
+  clientName: string;
+  projectType: string;
+  title: string;
+  summary: string;
+  challenge: string;
+  solution: string;
+  result: string;
+  testimonial?: string;
+  testimonialAuthor?: string;
+  tags: string[];
+  status: CaseStudyStatus;
+  coverImage?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Referral {
+  id: string;
+  fromClientName: string;
+  fromProjectId?: string;
+  toLeadName: string;
+  toCompany: string;
+  toContact: string;
+  projectType: string;
+  estimatedValue?: string;
+  status: ReferralStatus;
+  note?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export const MOCK_CASE_STUDIES: CaseStudy[] = [
+  {
+    id: 'cs1',
+    projectId: 'p3',
+    projectName: 'Novaland - 360 Virtual Tour',
+    clientName: 'Novaland',
+    projectType: '360',
+    title: 'Novaland Aqua City: Virtual Tour tăng tỷ lệ chốt sale 40%',
+    summary: 'VistaX phát triển giải pháp 360° Virtual Tour cho dự án Aqua City, giúp Novaland tăng tỷ lệ chốt sale lên 40% so với cùng kỳ.',
+    challenge: 'Khách hàng không thể đến thực địa tham quan, đặc biệt trong giai đoạn COVID. Cần giải pháp trải nghiệm thực tế ảo chất lượng cao.',
+    solution: 'Triển khai hệ thống 360° Virtual Tour với 15 điểm tham quan, tích hợp hotspot thông tin, video giới thiệu và live chat với sale.',
+    result: '+40% tỷ lệ chốt sale online. 15,000 lượt tham quan ảo trong tháng đầu. Giảm 60% chi phí tổ chức event thực địa.',
+    testimonial: 'VistaX đã giúp chúng tôi bán hàng ngay cả khi khách chưa đặt chân đến dự án. Đây là bước ngoặt cho chiến lược bán hàng số.',
+    testimonialAuthor: 'Nguyễn Minh Khoa — Marketing Director, Novaland',
+    tags: ['360', 'Virtual Tour', 'PropTech', 'BĐS'],
+    status: 'Published',
+    createdAt: '2024-02-28',
+    updatedAt: '2024-03-01',
+  },
+  {
+    id: 'cs2',
+    projectId: 'p1',
+    projectName: 'Vinhomes Grand Park CGI Package',
+    clientName: 'Vinhomes',
+    projectType: 'CGI',
+    title: 'Vinhomes Grand Park: CGI Package hoàn chỉnh cho launch campaign',
+    summary: 'Bộ CGI 360 ảnh và 3 video flythrough cho chiến dịch ra mắt phân khu The Rainbow, đạt 2M views trong 7 ngày.',
+    challenge: 'Dự án chưa xây xong nhưng cần content marketing chất lượng cao cho launch event trong vòng 45 ngày.',
+    solution: 'Pipeline CGI tốc độ cao: modelbuilding song song, lighting automation, render farm 24/7. Bàn giao 360 ảnh + 3 video trong 43 ngày.',
+    result: '2M views video trong 7 ngày đầu. 8,500 leads đăng ký trong tháng launch. Đạt 95% booking trong 2 tuần.',
+    testimonial: 'Chất lượng CGI vượt kỳ vọng, timeline không tưởng. VistaX là đối tác chiến lược không thể thiếu.',
+    testimonialAuthor: 'Trần Thị Lan — Brand Manager, Vinhomes',
+    tags: ['CGI', 'Launch Campaign', 'BĐS cao cấp'],
+    status: 'Published',
+    createdAt: '2024-03-01',
+    updatedAt: '2024-03-01',
+  },
+  {
+    id: 'cs3',
+    projectId: 'p2',
+    projectName: 'Masterise Lumière - Animation',
+    clientName: 'Masterise Homes',
+    projectType: 'Animation',
+    title: 'Masterise Lumière: Hero Animation cho sự kiện ra mắt quốc tế',
+    summary: 'Animation 3D cinematic 3 phút cho sự kiện ra mắt dự án Lumière tại Singapore và TP.HCM.',
+    challenge: 'Cần animation thể hiện đẳng cấp quốc tế, phải phù hợp cả thị trường Singapore và VN, deadline 60 ngày.',
+    solution: 'Concept dựa trên ánh sáng và kiến trúc Pháp. Âm nhạc custom. 3 phiên bản ngôn ngữ (EN/VN/CN). Review workflow online với client.',
+    result: 'Đạt 500K views trong 24h sau launch. 3 giải thưởng tại Vietnam Property Awards. Client ký tiếp 3 dự án mới.',
+    testimonial: 'Animation của VistaX nắm bắt đúng linh hồn của Lumière. Đây là thứ chúng tôi không thể tìm được ở bất kỳ đâu khác.',
+    testimonialAuthor: 'David Nguyen — CEO, Masterise Homes',
+    tags: ['Animation', '3D', 'Luxury', 'International'],
+    status: 'Draft',
+    createdAt: '2024-03-05',
+    updatedAt: '2024-03-05',
+  },
+];
+
+export const MOCK_REFERRALS: Referral[] = [
+  {
+    id: 'ref1',
+    fromClientName: 'Novaland',
+    fromProjectId: 'p3',
+    toLeadName: 'Phạm Quốc Anh',
+    toCompany: 'An Gia Real Estate',
+    toContact: 'pqa@angia.vn',
+    projectType: '360',
+    estimatedValue: '800,000,000 VND',
+    status: 'Converted',
+    note: 'Novaland giới thiệu sau khi thấy kết quả Virtual Tour. Đã ký hợp đồng tháng 3/2024.',
+    createdAt: '2024-02-15',
+    updatedAt: '2024-03-10',
+  },
+  {
+    id: 'ref2',
+    fromClientName: 'Vinhomes',
+    fromProjectId: 'p1',
+    toLeadName: 'Lê Thị Mai',
+    toCompany: 'Phú Mỹ Hưng',
+    toContact: 'ltmai@pmh.com.vn',
+    projectType: 'CGI',
+    estimatedValue: '2,500,000,000 VND',
+    status: 'In Progress',
+    note: 'Đang trình bày solution proposal. Meeting lần 2 vào 20/3.',
+    createdAt: '2024-03-01',
+    updatedAt: '2024-03-12',
+  },
+  {
+    id: 'ref3',
+    fromClientName: 'Masterise Homes',
+    fromProjectId: 'p2',
+    toLeadName: 'Trần Văn Bình',
+    toCompany: 'Capitaland Vietnam',
+    toContact: 'tvbinh@capitaland.vn',
+    projectType: 'Animation',
+    estimatedValue: '3,200,000,000 VND',
+    status: 'Pending',
+    note: 'Chưa liên hệ, đang chờ intro từ David Nguyen.',
+    createdAt: '2024-03-10',
+    updatedAt: '2024-03-10',
+  },
+  {
+    id: 'ref4',
+    fromClientName: 'Novaland',
+    toLeadName: 'Ngô Thanh Hùng',
+    toCompany: 'DIC Corp',
+    toContact: 'nthung@dic.com.vn',
+    projectType: '360',
+    estimatedValue: '600,000,000 VND',
+    status: 'Lost',
+    note: 'Họ chọn đối thủ với giá thấp hơn 30%. Budget constraint.',
+    createdAt: '2024-01-20',
+    updatedAt: '2024-02-15',
+  },
+];
