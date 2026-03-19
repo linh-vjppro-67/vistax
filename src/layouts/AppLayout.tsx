@@ -4,7 +4,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Role, ROLE_LABELS } from '@/data/mock-data';
 import {
   LayoutDashboard, Search, Settings, User, LogOut, Shield,
-  TrendingUp, ClipboardList, Zap, Archive, FolderOpen, BookOpen
+  TrendingUp, ClipboardList, Zap, Archive, FolderOpen, BookOpen, Bot
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -77,6 +77,10 @@ export default function AppLayout({ children }: { children: ReactNode }) {
           <NavBtn icon={BookOpen} iconColor="text-pink-500"
             labelVi="Case Studies & Referrals" label="Portfolio"
             active={isActive('/case-studies')} onClick={() => navigate('/case-studies')} />
+
+          <NavBtn icon={Bot} iconColor="text-violet-500"
+            labelVi="AI Tools" label="Crawl · RAG · Insights"
+            active={isActive('/ai-tools')} onClick={() => navigate('/ai-tools')} />
 
           <NavBtn icon={Search} iconColor="text-gray-400"
             labelVi="Tìm kiếm" label="Search"

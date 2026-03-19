@@ -19,6 +19,7 @@ import AdminTaxonomyPage from "@/pages/AdminTaxonomyPage";
 import GlobalSearchPage from "@/pages/GlobalSearchPage";
 import MigrationPage from "@/pages/MigrationPage";
 import CaseStudyPage from "@/pages/CaseStudyPage";
+import AIToolsPage from "@/pages/AIToolsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -64,6 +65,7 @@ const App = () => (
               <Route path="/search" element={<AppLayout><GlobalSearchPage /></AppLayout>} />
               <Route path="/migration" element={<AppLayout><MigrationPage /></AppLayout>} />
               <Route path="/case-studies" element={<AppLayout><CaseStudyPage /></AppLayout>} />
+              <Route path="/ai-tools" element={<AppLayout><AIToolsPage /></AppLayout>} />
 
               <Route path="*" element={<NotFound />} />
             </Routes>
